@@ -41,14 +41,27 @@ class TicTacToe():
 
     def get_move(self, turn):
         move = int(input(f'Ход игрока {turn}: '))
-        if move not in self.moves() or move not in range(1, 10):
-            move = int(input('Нельзя совершить такой ход, давай попробуем снова: '))
         return move
 
-
-
-
+    def num_to_X_or_O(self, turn, num):
+        string = (num - 1) // 3
+        col = (num - 1) % 3
+        self.board[string][col] = str(turn)
 
 
 game = TicTacToe(board)
-game.board_print()
+while not game.game_over():
+    game.board_print()
+    X = game.get_move('X')
+    game.num_to_X_or_O('X', X)
+    game.board_print()
+    if game.game_over():
+        break
+    O = game.get_move('O')
+    game.num_to_X_or_O('O', O)
+
+if game.win('X'):
+    print('Крестики победили')
+elif game.win('O'):
+    print('Нолики победили')
+else: print('Ну.. что сказать.. Ничья!')
