@@ -33,6 +33,18 @@ class TicTacToe():
             return True
         return False
 
+    def game_over(self):
+        self.moves()
+        if len(self.moves()) == 0 or self.win('X') == True or self.win('O') == True:
+            return True
+        return False
+
+    def get_move(self, turn):
+        move = int(input(f'Ход игрока {turn}: '))
+        if move not in self.moves() or move not in range(1, 10):
+            move = int(input('Нельзя совершить такой ход, давай попробуем снова: '))
+        return move
+
 
 
 
