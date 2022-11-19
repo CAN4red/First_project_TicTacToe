@@ -20,6 +20,21 @@ class TicTacToe():
                     movess.append(j)
         return movess
 
+    def win(self, XO):
+        for i in self.board:
+            if i.count(XO) == 3:
+                return True
+        for i in range(3):
+            if self.board[0][i] == XO and self.board[1][i] == XO and self.board[2][i] == XO:
+                return True
+        if self.board[0][0] == XO and self.board[1][1] == XO and self.board[2][2] == XO:
+            return True
+        elif self.board[0][2] == XO and self.board[1][1] == XO and self.board[2][0] == XO:
+            return True
+        return False
+
+
+
 
 
 
